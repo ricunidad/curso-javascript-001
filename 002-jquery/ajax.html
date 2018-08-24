@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    #datos{
+        width: 250px;
+        height: 250px;
+        border: 2px solid green;
+        overflow: scroll;
+    }
+    </style>
+</head>
+<body>
+    <h1>Curso Java Script Ajax con Jquery</h1>
+
+    <form action="https://reqres.in/api/users" method="POST" id="formulario">
+        Nombre: <input type="text" name="name" />
+        Web: <input type="text" name="web" />
+        <input type="submit" value="Regiastrar"/>
+    </form>
+    <br/>
+    <div id="datos"></div>
+
+    <script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
+    <script src="js/005-ajax.js"></script>
+</body>
+</html>
