@@ -1,0 +1,60 @@
+<h2>{{ titulo }}</h2>
+
+<p>Añadir marca</p>
+<p>
+    <input type="text" [(ngModel)]="mi_marca" (blur)="onBlur()" (keyup.enter)="mostrarPalabra()"/>
+    <button (click)="getMarca()" >Mostrar marca</button>
+    <button (click)="addMarca()" >Añadir marca</button>
+</p>
+
+<p>{{ mi_marca }}</p>
+<p>Compra las zapatillas de las mejores marcas</p>
+<ul>
+    <li *ngFor="let marca of marcas; let indice = index">
+        {{indice +1 }} - {{ marca }}
+        <button (click)="borrarMarca(indice)" >Borrar</button>
+    </li>
+</ul>
+
+<p>Las deportivas que tenemos disponibles son las siguientes:</p>
+<ul>
+    <li *ngFor="let deportiva of zapatillas">
+        <span [ngStyle]="{
+            'text-decoration': !deportiva.stock ? 'line-through':'none'
+        }">
+            {{ deportiva.nombre }} - <strong 
+            [class.altoPrecio]="deportiva.precio >= 80"
+            [ngClass]="{
+                'fondoRojo': deportiva.precio > 100,
+                'subrayado': deportiva.marca == mi_marca
+            }"
+            >{{ deportiva.precio }} $us.</strong>
+        </span>
+        
+        <span *ngIf="deportiva.precio < 80" 
+        [style.background]="deportiva.precio < 80? 'green':'transparent'"
+        [style.color]="deportiva.precio < 80? 'white':'black'"
+        
+        > ¡En oferta!</span>
+    </li>
+</ul>
+
+<p>El color de la mayoria de nuestras zapatillas es</p>
+<p>
+    <input type="text" [(ngModel)]="color"/>
+</p>
+
+<ul [ngSwitch]="color">
+    <li *ngSwitchCase="'yellow'">
+        El color predominante es el <span [ngStyle]="{ background: color }">Amarillo</span>
+    </li>
+    <li *ngSwitchCase="'red'">
+        El color predominante es el <span [ngStyle]="{ background: color }">Rojo</span>
+    </li>
+    <li *ngSwitchCase="'blue'">
+        El color predominante es el <span [ngStyle]="{ background: color }">Azul</span>
+    </li>
+    <li *ngSwitchCase="'orange'">
+        El color predominante es el <span [ngStyle]="{ background: color }">Naranja</span>
+    </li>
+</ul>
