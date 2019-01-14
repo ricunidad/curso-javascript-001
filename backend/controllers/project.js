@@ -1,6 +1,7 @@
 'use strict'
 var Project = require('../models/project');
 var fs = require('fs');
+const path = require('path');
 
 var controller = {
     home: function(req, res){
@@ -134,10 +135,45 @@ var controller = {
 
         }else{
             return res.status(200).send({
-                message: 'No se han subido archivos'
+                message: fileName
             });
         }
+    },
+/*
+    getImageFile: function(req, res){
+        var file = req.params.image;
+        var path_file = './uploads/'+file;
+
+        fs.exists(path_file, (exists) => {
+            if(exists){
+                return res.sendFile(path.resolve(path_file));
+            }else{
+                return res.status(200).send({
+                    message: "No existe la imagen..."
+                });
+            }
+            
+
+        });
     }
+    */
+    getImageFile: function(req, res){
+        var file = req.params.image;
+        var path_file = './uploads/'+file;
+
+        fs.exists(path_file, (exists) => {
+            if(exists){
+                return res.sendFile(path.resolve(path_file));
+            }else{
+                return res.status(200).send({
+                    message: "No existe la imagen..."
+                });
+            }
+            
+
+        });
+    }
+
 };
 
 module.exports = controller;
